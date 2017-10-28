@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xsi:schemaLocation="http://www.plcopen.org/xml/tc6_0201">
+  <fileHeader companyName="Blank" productName="Blank" productVersion="1.0" creationDateTime="2016-05-18T21:14:07"/>
+  <contentHeader name="FIO" modificationDateTime="2017-03-27T11:16:15">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="10" y="10"/>
+      </fbd>
+      <ld>
+        <scaling x="10" y="10"/>
+      </ld>
+      <sfc>
+        <scaling x="10" y="10"/>
+      </sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes/>
+    <pous>
+      <pou name="Scene1" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="sensor" address="%IX0.0">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="true"/>
+              </initialValue>
+            </variable>
+            <variable name="conv_belt" address="%QX0.0">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="true"/>
+              </initialValue>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <LD>
+            <leftPowerRail localId="2" height="40" width="10">
+              <position x="10" y="30"/>
+              <connectionPointOut formalParameter="">
+                <relPosition x="10" y="20"/>
+              </connectionPointOut>
+            </leftPowerRail>
+            <contact localId="3" height="20" width="30" negated="false">
+              <position x="90" y="40"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="2">
+                  <position x="90" y="50"/>
+                  <position x="20" y="50"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="30" y="10"/>
+              </connectionPointOut>
+              <variable>sensor</variable>
+            </contact>
+            <rightPowerRail localId="6" height="40" width="10">
+              <position x="470" y="30"/>
+              <connectionPointIn>
+                <relPosition x="0" y="20"/>
+                <connection refLocalId="7">
+                  <position x="470" y="50"/>
+                  <position x="400" y="50"/>
+                </connection>
+              </connectionPointIn>
+            </rightPowerRail>
+            <coil localId="7" height="20" width="30" negated="false">
+              <position x="370" y="40"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="3">
+                  <position x="370" y="50"/>
+                  <position x="120" y="50"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="30" y="10"/>
+              </connectionPointOut>
+              <variable>conv_belt</variable>
+            </coil>
+          </LD>
+        </body>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations>
+      <configuration name="Config">
+        <resource name="Res">
+          <task name="TaskMain" priority="0" interval="T#50ms">
+            <pouInstance name="Inst" typeName="Scene1"/>
+          </task>
+        </resource>
+      </configuration>
+    </configurations>
+  </instances>
+</project>
