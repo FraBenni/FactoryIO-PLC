@@ -16,7 +16,9 @@ Factory-IO. The repository is divided as follows:
   run in either Windows Powershell or Windows CMD and setup.sh should be run in
   the Linux subsystem for Windows.
 
-To run the examples or build on them, please refer to the source code.
+To run the examples or build on them, please refer to the source code. Note that
+paths will need to be changed in the setup.\* files because all paths are
+currently specific to my directory structures.
 
 # Requirements
 
